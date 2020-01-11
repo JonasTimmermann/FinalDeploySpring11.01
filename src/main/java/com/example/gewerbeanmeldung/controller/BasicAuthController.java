@@ -12,7 +12,7 @@ import com.example.gewerbeanmeldung.bean.AuthenticationBean;
 
 
 
-@CrossOrigin(origins="http://localhost:4200")
+@CrossOrigin  //(origins="http://localhost:4200")
 @RestController
 @RequestMapping("/api/v1")
 public class BasicAuthController {
