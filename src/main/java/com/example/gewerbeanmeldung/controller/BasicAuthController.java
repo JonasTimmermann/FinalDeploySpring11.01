@@ -12,7 +12,7 @@ import com.example.gewerbeanmeldung.bean.AuthenticationBean;
 
 
 
-@CrossOrigin  //(origins="http://localhost:4200")
+@CrossOrigin(origins="https://veranstaltungsformular.firebaseapp.com")
 @RestController
 @RequestMapping("/api/v1")
 public class BasicAuthController {
