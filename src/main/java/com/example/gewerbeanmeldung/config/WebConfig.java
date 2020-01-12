@@ -28,7 +28,7 @@ public void addCorsMappings(CorsRegistry corsRegistry){
 	.exposedHeaders("Authorization")
 	.allowCredentials(true);
 }
-	
+/**	
 @Bean
 public CorsFilter corsFilter() {
 
@@ -47,5 +47,5 @@ public CorsFilter corsFilter() {
     source.registerCorsConfiguration("/**", config);
     return new CorsFilter(source);
 }
-
+**/
 }
