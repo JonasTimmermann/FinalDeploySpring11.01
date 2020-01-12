@@ -12,10 +12,10 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+//@EnableGlobalMethodSecurity(prePostEnabled = true)  
 
 @Configuration
 @EnableWebSecurity
-@EnableGlobalMethodSecurity(prePostEnabled = true)  
 public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	@Bean
@@ -25,6 +25,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 		configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"));
 		configuration.setAllowedHeaders(Arrays.asList("authorization", "content-type", "x-auth-token"));
 		configuration.setExposedHeaders(Arrays.asList("x-auth-token"));
+		configuration.setAllowCredentials(true);
 		UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
 		source.registerCorsConfiguration("/**", configuration);
 		return source;
@@ -80,7 +81,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.csrf().disable().cors().and().antMatcher("/**").authorizeRequests().antMatchers("/fragen").permitAll().antMatchers("/fragen/{id}").permitAll()
+		http.csrf().disable().cors().configurationSource(corsConfigurationSource()).and().antMatcher("/**").authorizeRequests().antMatchers("/fragen").permitAll().antMatchers("/fragen/{id}").permitAll()
 		.antMatchers("/type/{formType}").permitAll().antMatchers("/category/all").permitAll()
 		.antMatchers("/type/{formType}/category/{category}").permitAll().antMatchers("/type/{form_id}/category/{category_id}/findstart").permitAll()
 		.antMatchers("/category/{category}").permitAll().antMatchers("/frage/{id}/choices").permitAll()
